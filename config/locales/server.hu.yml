@@ -973,6 +973,12 @@ hu:
       labels:
         user: Felhasználó
         qtt_like: Kapott kedvelések
+    topic_view_stats:
+      labels:
+        topic: Téma
+        logged_in_views: Bejelentkezve
+        anon_views: Névtelen
+        total_views: Összes
   dashboard:
     problem:
       rails_env: "A kiszolgáló jelenleg %{env} módban fut."
@@ -2161,7 +2167,12 @@ hu:
       privacy:
         fields:
           login_required:
-            placeholder: "Privát"
+            label: "Láthatóság"
+            choices:
+              public:
+                label: "Nyilvános"
+              private:
+                label: "Privát"
           chat_enabled:
             placeholder: "Csevegés engedélyezése"
       styling:

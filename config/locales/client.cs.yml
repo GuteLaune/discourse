@@ -23,6 +23,7 @@ cs:
             kb: kB
             mb: MB
             tb: TB
+      percent: "%{count}%"
       short:
         thousands: "%{number}k"
         millions: "%{number}M"
@@ -351,6 +352,11 @@ cs:
       active_user_count: "Aktivní uživatelé"
       contact: "Kontaktujte nás"
       contact_info: "V případě kritické chyby nebo urgentní záležitosti ovlivňující tuto stránku nás prosím kontaktujte na %{contact_info}."
+      member_count:
+        one: "%{formatted_number} Člen"
+        few: "%{formatted_number} Členové"
+        many: "%{formatted_number} Členů"
+        other: "%{formatted_number} Členů"
     bookmarked:
       title: "Záložka"
       edit_bookmark: "Upravit záložku"
@@ -846,11 +852,12 @@ cs:
           prefill:
             title: "Předvyplnění s nastavením pro:"
             gmail: "Gmail"
+          ssl_modes:
+            none: "Žádná"
           credentials:
             title: "Údaje"
             smtp_server: "SMTP server"
             smtp_port: "SMTP port"
-            smtp_ssl: "Použít SSL pro SMTP"
             imap_server: "IMAP server"
             imap_port: "IMAP port"
             imap_ssl: "Použít SSL pro IMAP"
@@ -1106,6 +1113,7 @@ cs:
       none: "(zvolit možnost)"
       required: 'Zadejte hodnotu pro "%{name}"'
       same_as_password: "Vaše heslo by se v jiných polích nemělo opakovat."
+      optional: (volitelné)
     user:
       said: "%{username}:"
       profile: "Profil"
@@ -1351,78 +1359,6 @@ cs:
         warnings: "Oficiální varování"
         read_more_in_group: "Chcete si přečíst více? Procházet další zprávy v %{groupLink}."
         read_more: "Chcete si přečíst více? Procházet další <a href='%{basePath}/u/%{username}/messages'>osobní zprávy</a>."
-        read_more_group_pm_MF: |
-          { HAS_UNREAD_AND_NEW, select,
-            true {
-              { UNREAD, plural,
-                   =0 {}
-                  one {Existuje <a href='{basePath}/u/{username}/messages/group/{groupName}/unread'># nepřečtená</a>}
-                   few {Existuje <a href='{basePath}/u/{username}/messages/group/{groupName}/unread'># nepřečtené</a>}
-                   many {Existuje <a href='{basePath}/u/{username}/messages/group/{groupName}/unread'># nepřečtených</a>}
-                other {Existuje <a href='{basePath}/u/{username}/messages/group/{groupName}/unread'># nepřečtených</a>}
-              }
-              { NEW, plural,
-                   =0 {}
-                  one { a <a href='{basePath}/u/{username}/messages/group/{groupName}/new'># zbývající nová</a> zpráva, nebo procházet další zprávy v {groupLink}}
-                   few { a <a href='{basePath}/u/{username}/messages/group/{groupName}/new'># zbývající nové</a> zprávy, nebo procházet další zprávy v {groupLink}}
-                   many { a <a href='{basePath}/u/{username}/messages/group/{groupName}/new'># zbývajících nových</a> zpráv, nebo procházet další zprávy v {groupLink}}
-                other { a <a href='{basePath}/u/{username}/messages/group/{groupName}/new'># zbývajících nových</a> zpráv, nebo procházet další zprávy v {groupLink}}
-              }
-            }
-            false {
-              { UNREAD, plural,
-                   =0 {}
-                  one {Zbývá <a href='{basePath}/u/{username}/messages/group/{groupName}/unread'># nepřečtená</a> zpráva nebo procházet další zprávy v {groupLink}}
-                   few {Zbývají <a href='{basePath}/u/{username}/messages/group/{groupName}/unread'># nepřečtené</a> zprávy nebo procházejte další zprávy v {groupLink}}
-                   many {Zbývá <a href='{basePath}/u/{username}/messages/group/{groupName}/unread'># nepřečtených</a> zprávy nebo procházejte další zprávy v {groupLink}}
-                other {Zbývá <a href='{basePath}/u/{username}/messages/group/{groupName}/unread'># nepřečtených</a> zpráv nebo procházejte další zprávy v {groupLink}}
-              }
-              { NEW, plural,
-                   =0 {}
-                  one {Zbývá <a href='{basePath}/u/{username}/messages/group/{groupName}/new'># nová</a> zpráva, nebo procházejte další zprávy v {groupLink}}
-                   few {Zbývají <a href='{basePath}/u/{username}/messages/group/{groupName}/new'># nové</a> zprávy nebo procházejte další zprávy v {groupLink}}
-                   many {Zbývá <a href='{basePath}/u/{username}/messages/group/{groupName}/new'># nových</a> zpráv nebo procházejte další zprávy v {groupLink}}
-                other {Zbývá <a href='{basePath}/u/{username}/messages/group/{groupName}/new'># nových</a> zpráv nebo procházejte další zprávy v {groupLink}}
-              }
-            }
-            other {}
-          }
-        read_more_personal_pm_MF: |
-          { HAS_UNREAD_AND_NEW, select,
-            true {
-              { UNREAD, plural,
-                   =0 {}
-                  one {Existuje <a href='{basePath}/u/{username}/messages/unread'># nepřečtená</a>}
-                   few {Existují <a href='{basePath}/u/{username}/messages/unread'># nepřečtené</a>}
-                   many {Existuje <a href='{basePath}/u/{username}/messages/unread'># nepřečtených</a>}
-                other {Existuje <a href='{basePath}/u/{username}/messages/unread'># nepřečtených</a>}
-              }
-              { NEW, plural,
-                   =0 {}
-                  one { a <a href='{basePath}/u/{username}/messages/new'># zbývající nová</a> zpráva nebo procházet další <a href='{basePath}/u/{username}/messages'>osobní zprávy</a>}
-                   few { a <a href='{basePath}/u/{username}/messages/new'># zbývající nové</a> zprávy nebo procházet další <a href='{basePath}/u/{username}/messages'>osobní zprávy</a>}
-                   many { a <a href='{basePath}/u/{username}/messages/new'># zbývajících nových</a> zpráva nebo procházet další <a href='{basePath}/u/{username}/messages'>osobních zpráv</a>}
-                other { a <a href='{basePath}/u/{username}/messages/new'># zbývajících nových</a> zpráv nebo procházet další <a href='{basePath}/u/{username}/messages'>osobní zprávy</a>}
-              }
-            }
-            false {
-              { UNREAD, plural,
-                   =0 {}
-                  one {Zbývá <a href='{basePath}/u/{username}/messages/unread'># nepřečtená</a> zpráva nebo procházet další <a href='{basePath}/u/{username}/messages'>osobní zprávy</a>}
-                   few {Zbývají <a href='{basePath}/u/{username}/messages/unread'># nepřečtené</a> zprávy nebo procházet další <a href='{basePath}/u/{username}/messages'>osobní zprávy</a>}
-                   many {Zbývá <a href='{basePath}/u/{username}/messages/unread'># nepřečtených</a> zpráv nebo procházet další <a href='{basePath}/u/{username}/messages'>osobní zprávy</a>}
-                other {Zbývá <a href='{basePath}/u/{username}/messages/unread'># nepřečtených</a> zpráv nebo procházet další <a href='{basePath}/u/{username}/messages'>osobní zprávy</a>}
-              }
-              { NEW, plural,
-                   =0 {}
-                  one {Zbývá <a href='{basePath}/u/{username}/messages/new'># nová</a> zpráva nebo procházet další <a href='{basePath}/u/{username}/messages'>osobní zprávy</a>}
-                   few {Zbývají <a href='{basePath}/u/{username}/messages/new'># nové</a> zprávy nebo procházet další <a href='{basePath}/u/{username}/messages'>osobní zprávy</a>}
-                   many {Zbývá <a href='{basePath}/u/{username}/messages/new'># nových</a> zpráv nebo procházet další <a href='{basePath}/u/{username}/messages'>osobní zprávy</a>}
-                other {Zbývá <a href='{basePath}/u/{username}/messages/new'># nových</a> zpráv nebo procházet další <a href='{basePath}/u/{username}/messages'>osobní zprávy</a>}
-              }
-            }
-            other {}
-          }
       preferences_nav:
         account: "Účet"
         security: "Zabezpečení"
@@ -1986,6 +1922,11 @@ cs:
     modal:
       close: "zavřít"
       dismiss_error: "Skrýt chybu"
+    form_kit:
+      reset: obnovit výchozí
+      optional: volitelné
+      errors:
+        required: "Nezbytnosti"
     close: "Zavřít"
     assets_changed_confirm: "Tato stránka právě obdržela softwarovou aktualizaci. Získat nejnovější verzi?"
     logout: "Byli jste odhlášeni."
@@ -1997,55 +1938,6 @@ cs:
       logout_disabled: "Odhlášení je zakázáno zatímco je stránka v režimu jen pro čtení."
     staff_writes_only_mode:
       enabled: "Tato stránka je v režimu pouze pro redaktory. Pokračujte v prohlížení, ale odpovídání, hodnocení Líbí se a další akce jsou omezeny pouze pro členy redakce."
-    logs_error_rate_notice:
-      reached_hour_MF: |
-        <b>{relativeAge}</b> – <a href='{url}' target='_blank'>{ rate, plural,
-            one {# chyba/hodinu}
-            few {# chyby/hodinu}
-            many {# chyb/hodinu}
-          other {# chyb/hodinu}
-        }</a> dosáhlo limitu nastavení webu {limit, plural,
-            one {# chyba/hodinu}
-            few {# chyby/hodinu}
-            many {# chyb/hodinu}
-          other {# chyb/hodinu}
-        }.
-      reached_minute_MF: |
-        <b>{relativeAge}</b> – <a href='{url}' target='_blank'>{ rate, plural,
-            one {# chyba/minutu}
-            few {# chyby/minutu}
-            many {# chyb/minutu}
-          other {# chyb/minutu}
-        }</a> dosáhlo limitu nastavení webu {limit, plural,
-            one {# chyba/minutu}
-            few {# chyby/minutu}
-            many {# chyb/minutu}
-          other {# chyb/minutu}
-        }.
-      exceeded_hour_MF: |
-        <b>{relativeAge}</b> – <a href='{url}' target='_blank'>{ rate, plural,
-            one {# chyba/hodinu}
-            few {# chyby/hodinu}
-            many {# chyb/hodinu}
-          other {# chyb/hodinu}
-        }</a> překročilo limitu nastavení webu { limit, plural,
-            one {# chyba/hodinu}
-            few {# chyby/hodinu}
-            many {# chyb/hodinu}
-          other {# chyb/hodinu}
-        }.
-      exceeded_minute_MF: |
-        <b>{relativeAge}</b> – <a href='{url}' target='_blank'>{ rate, plural,
-            one {# chyba/minutu}
-            few {# chyby/minutu}
-            many {# chyb/minutu}
-          other {# chyb/minutu}
-        }</a> překročilo limitu nastavení webu {limit, plural,
-            one {# chyba/minutu}
-            few {# chyby/minutu}
-            many {# chyb/minutu}
-          other {# chyb/minutu}
-        }.
     learn_more: "Zjistit více…"
     mute: Ignorovat
     unmute: Zrušit ignorování
@@ -2084,8 +1976,7 @@ cs:
       enabled_description: "Prohlížíte si nejlepší odpovědi na toto téma: nejzajímavější příspěvky jsou stanovené komunitou."
       buttons:
         hide: "Skrýt shrnutí"
-        generate: "Shrnout pomocí AI"
-        regenerate: "Vygenerovat shrnutí"
+        regenerate: "Vytvořit znovu"
       description_time_MF: |
         Zde { replyCount, plural,
             one {je <b>#</b> odpověď}
@@ -2101,6 +1992,7 @@ cs:
       enable: "Zobrazit nejlepší odpovědi"
       disable: "Přepnout na normální zobrazení"
       short_label: "Nejlepší odpovědi"
+      show_all_label: "Zobrazit vše"
       short_title: "Zobrazit nejlepší odpovědi na toto téma: nejzajímavější příspěvky stanovené komunitou"
     deleted_filter:
       enabled_description: "Toto téma obsahuje schované smazané příspěvky."
@@ -2130,10 +2022,11 @@ cs:
       header_title: "Vítejte!"
       subheader_title: "Pojďme vytvořit váš účet"
       disclaimer: "Registrací souhlasíte s <a href='%{privacy_link}' target='blank'>zásadami ochrany osobních údajů</a> a <a href='%{tos_link}' target='blank'>podmínkami služby</a>."
-      title: "Vytvořte si účet"
+      title: "Registrovat se"
       failed: "Něco se nepovedlo, možná je tato e-mailová adresa již použita. Zkuste použít formulář pro obnovení hesla."
       associate: "Máte již účet? <a href='%{associate_link}'>Přihlaste se</a> a propojte svůj účet %{provider}."
       activation_title: "Aktivujte svůj účet"
+      already_have_account: "Máte již účet?"
     forgot_password:
       title: "Obnovení hesla"
       action: "Zapomněl/a jsem své heslo"
@@ -3980,6 +3873,9 @@ cs:
         few: "%{count} kliknutí"
         many: "%{count} kliknutí"
         other: "%{count} kliknutí"
+      views: "Zobrazení"
+      read: přečtené
+      minutes: min
     post_links:
       about: "expandovat více odkazů v tomto příspěvku"
       title:
@@ -4014,39 +3910,23 @@ cs:
     pending_posts:
       label: "Čeká na schválení"
       label_with_count: "Nevyřízeno (%{count})"
-    posts_likes_MF: |
-      Toto téma má { count, plural,
-          one {# odpověď}
-          few {# odpovědi}
-          many {# odpovědí}
-        other {# odpovědí}
-      } { ratio, select,
-          low {s vysokým poměrem lajků na odpověď}
-          med {s velmi vysokým poměrem lajků na odpověď}
-         high {s extrémně vysokým poměrem lajků na odpověď}
-        other {}
-      }
+    posters: "Přispěvatelé"
     latest_poster_link: "Profil uživatele %{username}, nejnovější přispěvatel"
     original_post: "Původní příspěvek"
     views: "Zobrazení"
-    sr_views: "Seřadit podle zobrazení"
     views_lowercase:
       one: "zobrazení"
       few: "zobrazení"
       many: "zobrazení"
       other: "zobrazení"
     replies: "Odpovědi"
-    sr_replies: "Seřadit podle odpovědí"
     views_long:
       one: "Toto téma bylo zobrazeno %{count} krát"
       few: "Toto téma bylo zobrazeno %{number} krát"
       many: "Toto téma bylo zobrazeno %{number} krát"
       other: "Toto téma bylo zobrazeno %{number} krát"
     activity: "Aktivita"
-    sr_activity: "Seřadit podle aktivity"
     likes: "Líbí se"
-    sr_likes: "Seřadit podle líbí se mi"
-    sr_op_likes: "Řadit podle líbí se mi původního příspěvku"
     likes_lowercase:
       one: "líbí se"
       few: "líbí se"
@@ -4443,7 +4323,6 @@ cs:
         everyone_can_use: "Všichni mohou používat štítky"
         usable_only_by_groups: "Štítky jsou viditelné pro všechny, ale mohou je používat pouze následující skupiny"
         visible_only_to_groups: "Štítky jsou viditelné pouze pro následující skupiny"
-        cannot_save: "Nelze uložit skupinu štítků. Ujistěte se, že existuje alespoň jeden štítek, název skupiny štítků není prázdný a skupina je vybrána pro oprávnění štítků."
         tags_placeholder: "Vyhledat nebo vytvořit štítky"
         parent_tag_placeholder: "Volitelné"
         select_groups_placeholder: "Vyberte skupiny…"
@@ -4508,8 +4387,8 @@ cs:
       no_read_topics_body: "Jakmile začnete číst diskuse, uvidíte zde seznam. Pro začátek čtení, hledejte témata, která vás zajímají v <a href='%{topUrl}'>Top</a> nebo <a href='%{categoriesUrl}'>Kategorie</a> nebo hledejte podle klíčového slova %{searchIcon}"
     no_group_messages_title: "Nenalezeny žádné skupinové zprávy"
     topic_entrance:
-      sr_jump_top_button: "Přejít na první příspěvek"
-      sr_jump_bottom_button: "Přeskočit na poslední příspěvek"
+      jump_top_button_title: "Přejít na první příspěvek"
+      jump_bottom_button_title: "Přeskočit na poslední příspěvek"
     fullscreen_table:
       expand_btn: "Rozbalit tabulku"
       view_table: "Zobrazit tabulku"
@@ -4662,6 +4541,9 @@ cs:
       panels:
         forum:
           label: Fórum
+      back_to_forum: "Zpět na fórum"
+      collapse_all_sections: "Sbalit všechny sekce"
+      expand_all_sections: "Rozbalit všechny sekce"
       filter: "Filtr..."
       clear_filter: "Vymazat filtr"
       no_results:
@@ -4781,10 +4663,7 @@ cs:
     admin:
       title: "Administrátor"
       moderator: "Moderátor"
-      back_to_forum: "Zpět na fórum"
       filter_reports: Filtrovat přehledy
-      expand_all_sections: "Rozbalit všechny sekce"
-      collapse_all_sections: "Sbalit všechny sekce"
       tags:
         remove_muted_tags_from_latest:
           always: "vždy"
@@ -5227,8 +5106,23 @@ cs:
           staff_action_logs: "Protokoly akcí redaktorů"
       config_areas:
         about:
+          contact_url_placeholder: "https://johnny-smith.com/contact"
           optional: "(volitelné)"
           update: "Aktualizovat"
+          saved: "uloženo!"
+        flags:
+          description: "Popis"
+          enabled: "Zapnuto?"
+          edit: "Upravit"
+          delete: "Smazat"
+          delete_confirm: 'Opravdu chcete odstranit "%{name}"?'
+          form:
+            save: "Uložit"
+            name: "Jméno"
+            description: "Popis"
+            topic: "témata"
+            post: "příspěvky"
+            chat_message: "zprávy v chatu"
       plugins:
         title: "Pluginy"
         installed: "Nainstalované pluginy"
@@ -6148,6 +6042,7 @@ cs:
           add_types_title: "Povolit koncovky %{types}"
           add_types_toast: "Přidány typy souborů %{types}"
       badges:
+        status: Stav
         title: Odznaky
         new_badge: Nový odznak
         new: Nové
@@ -6155,8 +6050,6 @@ cs:
         badge: Odznak
         display_name: Zobrazované jméno
         description: Popis
-        long_description: Dlouhý Popis
-        badge_type: Typ odznaku
         badge_grouping: Skupina
         badge_groupings:
           modal_title: Sdružování odznaků
@@ -6184,6 +6077,8 @@ cs:
         disabled: vypnuto
         icon: Ikona
         image: Obrázek
+        select_an_icon: "Vyberte ikonu"
+        upload_an_image: "Nahrát obrázek"
         query: Dotaz na odznak (SQL)
         target_posts: Zeptat se na cílový příspěvek
         auto_revoke: Denně spouštět zrušení dotazu

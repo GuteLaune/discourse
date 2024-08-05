@@ -44,6 +44,8 @@ Discourse::Application.configure do
 
   config.log_level = ENV["DISCOURSE_DEV_LOG_LEVEL"] if ENV["DISCOURSE_DEV_LOG_LEVEL"]
 
+  config.active_record.logger = nil if ENV["RAILS_DISABLE_ACTIVERECORD_LOGS"] == "1" ||
+    ENV["ENABLE_LOGSTASH_LOGGER"] == "1"
   config.active_record.verbose_query_logs = true if ENV["RAILS_VERBOSE_QUERY_LOGS"] == "1"
 
   if defined?(BetterErrors)
@@ -89,8 +91,6 @@ Discourse::Application.configure do
         line =~ %r{lib/freedom_patches}
       end
     end
-
-    ActiveRecord::Base.logger = nil if ENV["RAILS_DISABLE_ACTIVERECORD_LOGS"] == "1"
 
     if ENV["BULLET"]
       Bullet.enable = true

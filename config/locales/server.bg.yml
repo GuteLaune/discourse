@@ -703,6 +703,12 @@ bg:
       labels:
         user: Потребител
         qtt_like: Получени харесвания
+    topic_view_stats:
+      labels:
+        topic: Тема
+        logged_in_views: Вписани
+        anon_views: Анонимен
+        total_views: Общо
   dashboard:
     problem:
       host_names: "Вашият config/database.yml файл използва по подразбиране localhost за hostname. Обновете, за да използва името на вашия сайт за hostname. "
@@ -1607,7 +1613,12 @@ bg:
       privacy:
         fields:
           login_required:
-            placeholder: "Затворени"
+            label: "Видимост"
+            choices:
+              public:
+                label: "Публични"
+              private:
+                label: "Затворени"
       styling:
         fields:
           styling_preview:

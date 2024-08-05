@@ -23,6 +23,7 @@ lt:
             kb: KB
             mb: MB
             tb: TB
+      percent: "%{count}%"
       short:
         thousands: "%{number}k"
         millions: "%{number}M"
@@ -749,11 +750,12 @@ lt:
           imap_mailbox_not_selected: "Šiai IMAP konfigūracijai turite pasirinkti pašto dėžutę arba pašto dėžutės nebus sinchronizuojamos!"
           prefill:
             title: "Užpildykite nustatymus:"
+          ssl_modes:
+            none: "Nieko"
           credentials:
             title: "Įgaliojimai"
             smtp_server: "SMTP serveris"
             smtp_port: "SMTP prievadas"
-            smtp_ssl: "SMTP naudokite SSL"
             imap_server: "IMAP serveris"
             imap_port: "IMAP prievadas"
             imap_ssl: "SSL naudojimas IMAP"
@@ -1000,6 +1002,7 @@ lt:
       none: "(pasirink nustatymą)"
       required: 'Prašome įvesti reikšmę "%{name}”'
       same_as_password: "Jūsų slaptažodis neturėtų kartotis kituose laukuose."
+      optional: (pasoronktinai)
     user:
       said: "%{username}:"
       profile: "Profilis"
@@ -1651,6 +1654,11 @@ lt:
     modal:
       close: "uždaryti"
       dismiss_error: "Atmesti klaidą"
+    form_kit:
+      reset: Atstatyti
+      optional: pasirinktinai
+      errors:
+        required: "Privalomi"
     close: "Uždaryti"
     logout: "Jūs buvote atjungtas nuo sistemos."
     refresh: "Atnaujinti"
@@ -1681,8 +1689,12 @@ lt:
     offline_indicator:
       refresh_page: "Atnaujinti puslapį"
     summary:
+      buttons:
+        generate: "Apibendrinti"
+        regenerate: "Pergeneruoti"
       disable: "Peržiūrėti visus Įrašus"
       short_label: "Populiariausi Atsakymai"
+      show_all_label: "Rodyti viską"
     deleted_filter:
       enabled_description: "Šioje temoje yra ištrintų įrašų, kurie yra paslėpti."
       disabled_description: "Ištrinti temos įrašai vėl rodomi."
@@ -1706,7 +1718,7 @@ lt:
       header_title: "Sveiki!"
       subheader_title: "Sukurti naują paskyrą"
       disclaimer: "Registruodamiesi sutinkate su <a href='%{privacy_link}' target='blank'>privatumo politika</a> ir <a href='%{tos_link}' target='blank'>paslaugų teikimo sąlygomis</a>."
-      title: "Sukurti naują paskyrą"
+      title: "Registruotis"
       failed: "Įvyko kažkas blogai, gali būti, kad šis el. paštas jau yra užregistruotas, pameginkite pasinaudoti slaptažodžio priminimo nuoroda"
     forgot_password:
       title: "Slaptažodžio atkūrimas"
@@ -3079,6 +3091,8 @@ lt:
         few: "%{count} paspaudimai"
         many: "%{count} paspaudimų"
         other: "%{count} paspaudimų"
+      views: "Peržiūros"
+      read: skaityti
     post_links:
       title:
         one: "%{count} daugiau"
@@ -3112,23 +3126,21 @@ lt:
     pending_posts:
       label: "Laukiama"
       label_with_count: "Neperskaityti (%{count})"
+    posters: "Komentatoriai"
     original_post: "Originalus įrašas"
     views: "Peržiūros"
-    sr_views: "Rūšiuoti pagal peržiūras"
     views_lowercase:
       one: "peržiūra"
       few: "peržiūros"
       many: "peržiūros"
       other: "peržiūros"
     replies: "Atsakymai"
-    sr_replies: "Rūšiuoti pagal atsakymus"
     views_long:
       one: "ši tema buvo peržiūrėta %{count} kartą"
       few: "ši tema buvo peržiūrėta %{number} kartus"
       many: "ši tema buvo peržiūrėta %{number}kartų"
       other: "ši tema buvo peržiūrėta %{number} kartus"
     activity: "Aktyvumas"
-    sr_activity: "Rūšiuoti pagal veiklą"
     likes: "Patikimai"
     likes_lowercase:
       one: "patikimas"
@@ -3449,7 +3461,6 @@ lt:
         everyone_can_use: "Žymas gali naudoti visi"
         usable_only_by_groups: "Žymos matomos visiems, tačiau jas gali naudoti tik šios grupės"
         visible_only_to_groups: "Žymės matomos tik šioms grupėms"
-        cannot_save: "Nepavyko išsaugoti žymų grupės. Įsitikinkite, kad yra bent viena žyma, žymų grupės pavadinimas nėra tuščias, o žymų leidimui pasirinkta grupė."
         tags_placeholder: "Ieškokite arba sukurkite žymas"
         parent_tag_placeholder: "Pasirinktinai"
         disabled: "Žymėjimas yra išjungtas. "
@@ -3508,8 +3519,8 @@ lt:
       no_read_topics_title: "Dar neskaitėte jokių temų"
     no_group_messages_title: "Grupės pranešimų nerasta"
     topic_entrance:
-      sr_jump_top_button: "Peršokti į pirmą įrašą"
-      sr_jump_bottom_button: "Peršokti į paskutinį įrašą"
+      jump_top_button_title: "Peršokti į pirmą įrašą"
+      jump_bottom_button_title: "Peršokti į paskutinį įrašą"
     fullscreen_table:
       expand_btn: "Išskleisti lentelę"
     second_factor_auth:
@@ -3925,10 +3936,24 @@ lt:
           spam: "Šlamštas"
       config_areas:
         about:
+          contact_url_placeholder: "https://johnny-smith.com/contact"
           site_contact_group_help: |
             Galiojantis grupės pavadinimas, kuris yra pakviestas į visas automatiškai siunčiamas privačias žinutes.
           optional: "(pasoronktinai)"
           update: "Atnaujinti"
+          saved: "išsaugota!"
+        flags:
+          description: "Aprašymas"
+          enabled: "Galimas?"
+          edit: "Redaguoti"
+          delete: "Pašalinti"
+          delete_confirm: 'Ar tikrai norite ištrinti „%{name}“?'
+          form:
+            save: "Išsaugoti"
+            name: "Vardas"
+            description: "Aprašymas"
+            topic: "temos"
+            post: "žinutės"
       plugins:
         title: "Plugins"
         installed: "Installed Plugins"
@@ -4908,6 +4933,7 @@ lt:
           add_image_types: "Paveiksliukai"
           add_audio_types: "Audio"
       badges:
+        status: Statusas
         title: Trofėjai
         new_badge: Naujas ženklelis
         new: Naujas
@@ -4915,8 +4941,6 @@ lt:
         badge: Ženklelis
         display_name: Rodymo pavadinimas
         description: Aprašymas
-        long_description: Ilgas aprašymas
-        badge_type: Ženklelio tipas
         badge_grouping: Grupė
         badge_groupings:
           modal_title: Ženklelių grupavimas

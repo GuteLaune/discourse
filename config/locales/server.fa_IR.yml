@@ -886,6 +886,12 @@ fa_IR:
       labels:
         user: کاربر
         qtt_like: پسند‌های دریافتی
+    topic_view_stats:
+      labels:
+        topic: موضوع
+        logged_in_views: وارد شده در
+        anon_views: ناشناس
+        total_views: مجموع
   dashboard:
     problem:
       rails_env: "سرور شما در حالت %{env} در حال اجراست"
@@ -2225,8 +2231,12 @@ fa_IR:
       privacy:
         fields:
           login_required:
-            placeholder: "خصوصی"
-            extra_description: "فقط کاربرانی که در حسای‌کاربردی خود وارد شده‌اند، می‌توانند به این انجمن دسترسی داشته باشند"
+            label: "قابل مشاهده"
+            choices:
+              public:
+                label: "عمومی"
+              private:
+                label: "خصوصی"
           chat_enabled:
             placeholder: "فعال کردن گفتگو"
       ready:

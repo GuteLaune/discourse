@@ -48,6 +48,13 @@ class ProblemCheck
   #
   config_accessor :max_blips, default: 0, instance_writer: false
 
+  # Indicates that the problem check is an "inline" check. This provides a
+  # low level construct for registering problems ad-hoc within application
+  # code, without having to extract the checking logic into a dedicated
+  # problem check.
+  #
+  config_accessor :inline, default: false, instance_writer: false
+
   # Problem check classes need to be registered here in order to be enabled.
   #
   # Note: This list must come after the `config_accessor` declarations.
@@ -111,9 +118,14 @@ class ProblemCheck
   delegate :scheduled?, to: :class
 
   def self.realtime?
-    !scheduled?
+    !scheduled? && !inline?
   end
   delegate :realtime?, to: :class
+
+  def self.inline?
+    inline
+  end
+  delegate :inline?, to: :class
 
   def self.call(data = {})
     new(data).call
@@ -169,12 +181,11 @@ class ProblemCheck
   def problem(override_key: nil, override_data: {})
     [
       Problem.new(
-        message ||
-          I18n.t(
-            override_key || translation_key,
-            base_path: Discourse.base_path,
-            **override_data.merge(translation_data).symbolize_keys,
-          ),
+        I18n.t(
+          override_key || translation_key,
+          base_path: Discourse.base_path,
+          **override_data.merge(translation_data).symbolize_keys,
+        ),
         priority: self.config.priority,
         identifier:,
       ),
@@ -183,10 +194,6 @@ class ProblemCheck
 
   def no_problem
     []
-  end
-
-  def message
-    nil
   end
 
   def translation_key

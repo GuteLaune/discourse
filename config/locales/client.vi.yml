@@ -20,6 +20,7 @@ vi:
             kb: KB
             mb: MB
             tb: TB
+      percent: "%{count}%"
       short:
         thousands: "%{number}k"
         millions: "%{number}triệu"
@@ -671,11 +672,12 @@ vi:
           imap_mailbox_not_selected: "Bạn phải chọn Hộp thư cho cấu hình IMAP này nếu không sẽ không có hộp thư nào được đồng bộ hóa!"
           prefill:
             title: "Điền sẵn các cài đặt cho:"
+          ssl_modes:
+            none: "Không có gì"
           credentials:
             title: "Thông tin đăng nhập"
             smtp_server: "Máy chủ SMTP"
             smtp_port: "Cổng SMTP"
-            smtp_ssl: "Sử dụng SSL cho SMTP"
             imap_server: "Máy chủ IMAP"
             imap_port: "Cổng IMAP"
             imap_ssl: "Sử dụng SSL cho IMAP"
@@ -918,6 +920,7 @@ vi:
     user_fields:
       none: "(chọn một tùy chọn)"
       required: 'Vui lòng nhập giá trị cho "%{name}"'
+      optional: (tùy chọn)
     user:
       said: "%{username}:"
       profile: "Tiểu sử"
@@ -1579,6 +1582,13 @@ vi:
     modal:
       close: "đóng"
       dismiss_error: "Loại bỏ lỗi"
+    form_kit:
+      reset: Cài lại
+      optional: tùy chọn
+      errors:
+        required: "Bắt buộc"
+        too_short:
+          other: "Phải ít nhất %{count} ký tự"
     close: "Đóng lại"
     logout: "Bạn đã đăng xuất"
     refresh: "Tải lại"
@@ -1587,15 +1597,6 @@ vi:
       enabled: "Website đang ở chế độ chỉ đọc, bạn có thể duyệt xem nhưng không thể trả lời, likes, hay thực hiện các hành động khác."
       login_disabled: "Chức năng Đăng nhập đã bị tắt khi website trong trạng thái chỉ đọc"
       logout_disabled: "Chức năng đăng xuất đã bị tắt khi website đang trong trạng thái chỉ đọc."
-    logs_error_rate_notice:
-      reached_hour_MF: |
-        <b>{relativeAge}</b> - <a href='{url}' target='_blank'>{rate, plural, other {# lỗi / giờ}}</a> trang web đạt đến giới hạn thiết lập của {limit, plural, other {# lỗi / giờ}}.
-      reached_minute_MF: |
-        <b>{relativeAge}</b> - <a href='{url}' target='_blank'>{rate, plural, other {# lỗi / phút}}</a> trang web đạt đến giới hạn thiết lập của {limit, plural, other {# lỗi / phút}}.
-      exceeded_hour_MF: |
-        <b>{relativeAge}</b> - <a href='{url}' target='_blank'>{rate, plural, other {# lỗi / giờ}}</a> vượt quá giới hạn thiết lập trang web của {limit, plural, other {# lỗi / giờ}}.
-      exceeded_minute_MF: |
-        <b>{relativeAge}</b> - <a href='{url}' target='_blank'>{rate, plural, other {# lỗi / phút}}</a> vượt quá giới hạn thiết lập trang web của {limit, plural, other {# lỗi / phút}}.
     learn_more: "Tìm hiểu thêm…"
     mute: Im lặng
     unmute: Bỏ im lặng
@@ -1618,7 +1619,11 @@ vi:
     summary:
       description:
         other: "Có <b>%{count}</b> trả lời."
+      buttons:
+        generate: "Tóm tắt"
+        regenerate: "Khởi tạo lại"
       disable: "HIển thị tất cả các bài viết"
+      show_all_label: "Hiển thị tất cả"
     deleted_filter:
       enabled_description: "Chủ để này có chứa các bài viết bị xoá, chúng đã bị ẩn đi"
       disabled_description: "Xoá các bài viết trong các chủ để được hiển thị"
@@ -1644,7 +1649,7 @@ vi:
       header_title: "Chào mừng!"
       subheader_title: "Hãy tạo tài khoản của bạn"
       disclaimer: "Bằng cách đăng ký, bạn đồng ý với <a href='%{privacy_link}' target='blank'>chính sách bảo mật</a> và <a href='%{tos_link}' target='blank'>điều khoản dịch vụ</a>."
-      title: "Tạo tài khoản của bạn"
+      title: "Đăng ký"
       failed: "Có gì đó không đúng, có thể email này đã được đăng ký, thử liên kết quên mật khẩu"
       associate: "Đã có tài khoản? <a href='%{associate_link}'>Đăng nhập</a> để liên kết tài khoản %{provider} của bạn."
       activation_title: "Kích hoạt tài khoản của bạn"
@@ -3094,6 +3099,9 @@ vi:
       links_shown: "hiện thêm liên kết…"
       clicks:
         other: "%{count} nhấp chuột"
+      views: "Lượt xem"
+      read: đọc
+      minutes: tối thiểu
     post_links:
       about: "mở rộng nhiều liên kết hơn cho bài đăng này"
       title:
@@ -3125,26 +3133,16 @@ vi:
     pending_posts:
       label: "Đang treo"
       label_with_count: "Đang xử lý (%{count})"
-    posts_likes_MF: |
-      Chủ đề này có {count, plural, other {# trả lời}} {ratio, select,
-        low {với tỷ lệ like trên post cao}
-        med {với tỷ lệ like trên post rất cao}
-        high {với tỷ lệ like trên post cực cao}
-        other {}}
+    posters: "Người gửi"
     original_post: "Bài viết gốc"
     views: "Lượt xem"
-    sr_views: "Sắp xếp theo lượt xem"
     views_lowercase:
       other: "lượt xem"
     replies: "Trả lời"
-    sr_replies: "Sắp xếp theo câu trả lời"
     views_long:
       other: "chủ đề này đã được xem %{number} lần"
     activity: "Hoạt động"
-    sr_activity: "Sắp xếp theo hoạt động"
     likes: "Lượt thích"
-    sr_likes: "Sắp xếp theo lượt thích"
-    sr_op_likes: "Sắp xếp theo lượt thích bài đăng ban đầu"
     likes_lowercase:
       other: "lượt thích"
     users: "Người dùng"
@@ -3471,7 +3469,6 @@ vi:
         everyone_can_use: "Mọi người đều có thể sử dụng thẻ"
         usable_only_by_groups: "Tất cả mọi người đều có thể nhìn thấy thẻ, nhưng chỉ những nhóm sau mới có thể sử dụng chúng"
         visible_only_to_groups: "Thẻ chỉ hiển thị cho các nhóm sau"
-        cannot_save: "Không thể lưu nhóm thẻ. Đảm bảo rằng có ít nhất một thẻ hiện diện, tên nhóm thẻ không trống và một nhóm được chọn cho quyền đối với thẻ."
         tags_placeholder: "Tìm kiếm hoặc tạo thẻ"
         parent_tag_placeholder: "Tùy chọn"
         select_groups_placeholder: "Chọn nhóm…"
@@ -3536,8 +3533,8 @@ vi:
       no_read_topics_body: "Khi bạn bắt đầu đọc các cuộc thảo luận, bạn sẽ thấy một danh sách ở đây. Để bắt đầu đọc, hãy tìm các chủ đề mà bạn quan tâm trong <a href='%{topUrl}'>Top</a> hoặc <a href='%{categoriesUrl}'>Danh mục</a> hoặc tìm kiếm theo từ khóa %{searchIcon}"
     no_group_messages_title: "Không tìm thấy tin nhắn nhóm nào"
     topic_entrance:
-      sr_jump_top_button: "Chuyển đến bài viết đầu tiên"
-      sr_jump_bottom_button: "Chuyển đến bài viết cuối cùng"
+      jump_top_button_title: "Chuyển đến bài viết đầu tiên"
+      jump_bottom_button_title: "Chuyển đến bài viết cuối cùng"
     fullscreen_table:
       expand_btn: "Mở rộng bảng"
     second_factor_auth:
@@ -4031,8 +4028,22 @@ vi:
           spam: "Rác"
       config_areas:
         about:
+          contact_url_placeholder: "https://johnny-smith.com/contact"
           optional: "(tùy chọn)"
           update: "Cập nhật"
+          saved: "đã lưu"
+        flags:
+          description: "Mô tả"
+          enabled: "Kích hoạt"
+          edit: "Sửa"
+          delete: "Xóa"
+          delete_confirm: 'Bạn có chắc chắn muốn xóa "%{name}" không?'
+          form:
+            save: "Lưu lại"
+            name: "Tên"
+            description: "Mô tả"
+            topic: "các chủ đề"
+            post: "bài viết"
       plugins:
         title: "Plugin"
         installed: "Đã cài Plugin"
@@ -5073,6 +5084,7 @@ vi:
         file_types_list:
           add_image_types: "Hình ảnh"
       badges:
+        status: Trạng thái
         title: Huy hiệu
         new_badge: Thêm huy hiệu
         new: Mới
@@ -5080,8 +5092,6 @@ vi:
         badge: Huy hiệu
         display_name: Tên Hiển thị
         description: Mô tả
-        long_description: Mô Tả Dài
-        badge_type: Kiểu huy hiệu
         badge_grouping: Nhóm
         badge_groupings:
           modal_title: Nhóm huy hiệu
@@ -5110,9 +5120,8 @@ vi:
         image: Hình ảnh
         graphic: Đồ họa
         icon_help: "Nhập tên biểu tượng Font Awesome (sử dụng tiền tố 'far-' cho các biểu tượng thông thường và 'fab-' cho các biểu tượng thương hiệu)"
-        image_help: "Tải lên hình ảnh sẽ ghi đè trường biểu tượng nếu cả hai đều được đặt."
         select_an_icon: "Chọn một biểu tượng"
-        upload_an_image: "Tải lên hình ảnh"
+        upload_an_image: "Tải lên một hình ảnh"
         read_only_setting_help: "Tùy chỉnh văn bản"
         query: Truy vấn huy hiệu (SQL)
         target_posts: Truy vấn bài viết mục tiêu

@@ -7,15 +7,12 @@ class Admin::SiteSettingsController < Admin::AdminController
 
   def index
     params.permit(:categories, :plugin)
-    params.permit(:filter_names, [])
 
     render_json_dump(
       site_settings:
         SiteSetting.all_settings(
           filter_categories: params[:categories],
           filter_plugin: params[:plugin],
-          filter_names: params[:filter_names],
-          include_locale_setting: params[:filter_names].blank?,
         ),
     )
   end
